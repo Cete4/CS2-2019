@@ -9,7 +9,7 @@ public class Driver {
 		boolean grac = true;
 
 		// TODO JAVADOC
-		SortedLinkedList list = new SortedLinkedList();
+		LinkedList list = new LinkedList();
 
 		// TODO JAVADOC
 		while (grac) {
@@ -24,7 +24,7 @@ public class Driver {
 				System.out.println("Please enter a string");
 				String str = input.next();
 				input.next();
-				list.addItem(str);
+				//list.addItem(str);
 				break;
 
 			case 2:

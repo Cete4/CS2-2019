@@ -1,5 +1,5 @@
 
-public class SortedLinkedList {
+public class LinkedList {
 
 	// TODO JAVADOC
 	private int size;
@@ -32,8 +32,8 @@ public class SortedLinkedList {
 
 		// TODO JAVADOC
 		Node iterator = head.getNext();
-		
-		// TODO Explain this 
+
+		// TODO Explain this
 		while (iterator.getNext() != null) {
 			iterator = iterator.getNext();
 		}
@@ -45,12 +45,19 @@ public class SortedLinkedList {
 
 	// TODO JAVADOC
 	public void deleteItem(String str) throws Exception {
-		
+
 		Node iterator = head.getNext();
+
+		while (iterator.getNext().getNext() != null) {
+			if (iterator.getNext().getData().equals(str)) {
+				iterator.setNext(iterator.getNext().getNext());
+			}
+		}
+		sortList(this);
 		this.size--;
 	}
 
-	public SortedLinkedList sortList(SortedLinkedList unsortedlist) {
+	public LinkedList sortList(LinkedList unsortedlist) {
 
 		Node iterator = head.getNext();
 
@@ -87,7 +94,7 @@ public class SortedLinkedList {
 		return unsortedlist;
 	}
 
-	public SortedLinkedList() {
+	public LinkedList() {
 		this.size = 0;
 		this.head = new Node("", null);
 	}
