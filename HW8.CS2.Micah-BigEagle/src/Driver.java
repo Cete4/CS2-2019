@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+
+//TODO Insta meme from nate 
 //Drives things like uber but code
 //Comment out above when it stops being funny 
 public class Driver {
@@ -11,6 +13,7 @@ public class Driver {
 		// TODO JAVADOC
 		LinkedList list = new LinkedList();
 
+		/*
 		// TODO JAVADOC
 		while (grac) {
 			System.out.println("1: Add 2: Delete 3: Quit");
@@ -36,6 +39,17 @@ public class Driver {
 			}
 			input.close();
 		}
+		*/
+	
+		LinkedList prac = new LinkedList();
+		
+		Node a = new Node("a", null);
+		prac.addItem("b");
+		prac.addItem("b");
+
+		
+		System.out.println(a);
+		System.out.println(prac);
 	}
 
 }

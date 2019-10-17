@@ -28,19 +28,26 @@ public class LinkedList {
 	}
 
 	// TODO JAVADOC
-	public void addItem(String str) throws Exception {
-
-		// TODO JAVADOC
-		Node iterator = head.getNext();
+	public void addItem(String str) /* TODO Uncomment throws Exception */ {
 
 		// TODO Explain this
-		while (iterator.getNext() != null) {
-			iterator = iterator.getNext();
+		if (head.getNext() == null) {
+			Node first = new Node(str, null);
+			head.setNext(first);
+			this.size++;
+		} else {
+			// TODO JAVADOC
+			Node iterator = head.getNext();
+			// TODO Explain this
+			while (iterator.getNext() != null) {
+				iterator = iterator.getNext();
+			}
+			// TODO Explain this
+			Node last = new Node(str, null);
+			iterator.setNext(last);
+			sortList(this);
+			this.size++;
 		}
-		Node last = new Node(str, null);
-		iterator.setNext(last);
-		sortList(this);
-		this.size++;
 	}
 
 	// TODO JAVADOC
@@ -61,9 +68,9 @@ public class LinkedList {
 
 		Node iterator = head.getNext();
 
-		while (iterator.getData() != null) {
+		while (iterator != null && iterator.getNext() != null) {
 
-			if (iterator.getData().compareTo(iterator.getNext().getData()) < 0) {
+			if (iterator.getData().compareTo(iterator.getNext().getData()) > 0) {
 
 				/*
 				 * If the string after the iterator is smaller than the iterator then create a
@@ -101,13 +108,17 @@ public class LinkedList {
 
 	@Override
 	public String toString() {
-		Node iterator = head.getNext();
-		sortList(this);
 		String list = "";
-		while (iterator.getNext() != null) {
+		if (head.getNext() != null) {
+			Node iterator = head.getNext();
+			while (iterator.getNext() != null) {
+				list += iterator.getData();
+				list += "\n";
+				iterator = iterator.getNext();
+			}
+
+			// TODO Try to fix this to make it neater
 			list += iterator.getData();
-			list += "\n";
-			iterator = iterator.getNext();
 		}
 		return list;
 	}
