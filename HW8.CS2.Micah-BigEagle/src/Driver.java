@@ -1,55 +1,51 @@
 import java.util.Scanner;
 
-
 //TODO Insta meme from nate 
 //Drives things like uber but code
 //Comment out above when it stops being funny 
 public class Driver {
 	public static void main(String[] args) {
 
-		// TODO JAVADOC
-		boolean grac = true;
-
-		// TODO JAVADOC
-		LinkedList list = new LinkedList();
-
-		/*
-		// TODO JAVADOC
-		while (grac) {
-			System.out.println("1: Add 2: Delete 3: Quit");
-
+		try {
+			// TODO JAVADOC
+			boolean grac = true;
 			Scanner input = new Scanner(System.in);
-			input.nextLine();
-			int option = input.nextInt();
-			switch (option) {
 
-			case 1:
-				System.out.println("Please enter a string");
-				String str = input.next();
-				input.next();
-				//list.addItem(str);
-				break;
+			// TODO JAVADOC
+			LinkedList list = new LinkedList();
 
-			case 2:
-				break;
+			// TODO JAVADOC
+			while (grac) {
+				System.out.println("Please select an option.");
+				System.out.println("1: Add 2: Delete 3: Quit");
+				switch (input.nextInt()) {
 
-			case 3:
-				break;
+				case 1:
+					System.out.println("Please enter a string");
+					list.addItem(input.next());
+					System.out.println("List size: " + list.getSize());
+					System.out.println(list);
+					break;
 
+				case 2:
+					System.out.println("Please enter a string");
+					list.deleteItem(input.next());
+					System.out.println("List size: " + list.getSize());
+					System.out.println(list);
+					break;
+
+				case 3:
+					grac = false;
+					break;
+
+				}
 			}
 			input.close();
-		}
-		*/
-	
-		LinkedList prac = new LinkedList();
-		
-		Node a = new Node("a", null);
-		prac.addItem("b");
-		prac.addItem("b");
+		} catch (
 
-		
-		System.out.println(a);
-		System.out.println(prac);
+		Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

@@ -28,7 +28,7 @@ public class LinkedList {
 	}
 
 	// TODO JAVADOC
-	public void addItem(String str) /* TODO Uncomment throws Exception */ {
+	public void addItem(String str) throws Exception {
 
 		// TODO Explain this
 		if (head.getNext() == null) {
@@ -40,7 +40,11 @@ public class LinkedList {
 			Node iterator = head.getNext();
 			// TODO Explain this
 			while (iterator.getNext() != null) {
-				iterator = iterator.getNext();
+				if (iterator.getData().equals(str)) {
+					throw new Exception("Error adding String: Duplicate String in List");
+				} else {
+					iterator = iterator.getNext();
+				}
 			}
 			// TODO Explain this
 			Node last = new Node(str, null);
@@ -55,16 +59,30 @@ public class LinkedList {
 
 		Node iterator = head.getNext();
 
-		while (iterator.getNext().getNext() != null) {
-			if (iterator.getNext().getData().equals(str)) {
-				iterator.setNext(iterator.getNext().getNext());
+		// Checks to see if the first node agter the head is the thing that needs to be
+		// deleted
+		if (iterator.getData().equals(str)) {
+			head.setNext(iterator.getNext());
+			this.size--;
+		} else if (iterator.getNext().getNext() != null) {
+			// Checks to see if anything in the linked list is the node to be deleted
+			while (iterator.getNext().getNext() != null) {
+				if (iterator.getNext().getData().equals(str)) {
+					iterator.setNext(iterator.getNext().getNext());
+					this.size--;
+					break;
+				}
+				iterator = iterator.getNext();
 			}
+		} else if (iterator.getNext().getNext().getData().equals(str)) {
+			iterator.setNext(null);
+			this.size--;
+		} else {
+			throw new Exception("Error deleting string: This string isn't in the linked list.");
 		}
-		sortList(this);
-		this.size--;
 	}
 
-	public LinkedList sortList(LinkedList unsortedlist) {
+	public void sortList(LinkedList unsortedlist) {
 
 		Node iterator = head.getNext();
 
@@ -98,9 +116,9 @@ public class LinkedList {
 			}
 
 		}
-		return unsortedlist;
 	}
 
+	// TODO JAVADOC
 	public LinkedList() {
 		this.size = 0;
 		this.head = new Node("", null);
@@ -111,13 +129,18 @@ public class LinkedList {
 		String list = "";
 		if (head.getNext() != null) {
 			Node iterator = head.getNext();
+			int i = -1;
 			while (iterator.getNext() != null) {
+				i++;
+				list += i + ":     ";
 				list += iterator.getData();
 				list += "\n";
 				iterator = iterator.getNext();
 			}
 
 			// TODO Try to fix this to make it neater
+			i++;
+			list += i + ":     ";
 			list += iterator.getData();
 		}
 		return list;
