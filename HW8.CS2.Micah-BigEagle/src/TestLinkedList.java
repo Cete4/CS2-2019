@@ -27,17 +27,17 @@ class TestLinkedList {
 			ll.addItem("I");
 			ll.addItem("J");
 
-			System.out.println(ll + "\nThe full list" + ll.getSize());
+			System.out.println(ll + "\nThe full list " + ll.getSize());
 			System.out.println();
 
 			ll.deleteItem("A");
 			assertTrue(ll.getHead().getNext().getData().equals("B"));
-			System.out.println(ll + " \nThe list without A" + ll.getSize());
+			System.out.println(ll + " \nThe list without A " + ll.getSize());
 			System.out.println();
 
 			ll.deleteItem("D");
 			assertTrue(ll.getHead().getNext().getData().equals("B"));
-			System.out.println(ll + "\nThe list without D" + ll.getSize());
+			System.out.println(ll + "\nThe list without D " + ll.getSize());
 			System.out.println();
 
 			ll.deleteItem("J");
@@ -47,7 +47,7 @@ class TestLinkedList {
 
 			ll.deleteItem("T");
 			assertTrue(ll.getHead().getNext().getData().equals("B"));
-			System.out.println(ll + "\nTesting the error by checking for T" + ll.getSize());
+			System.out.println(ll + "\nTesting the error by checking for T " + ll.getSize());
 			System.out.println();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

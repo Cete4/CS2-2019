@@ -58,25 +58,23 @@ public class LinkedList {
 	public void deleteItem(String str) throws Exception {
 
 		Node iterator = head.getNext();
-
-		/*
-		 * Checks to see if the first node is the node that needs to be deleted
-		 * 
-		 */
-		if (iterator.getData().equals(str)) {
-			head.setNext(iterator.getNext());
-		}
-
+		boolean grac = false;
 		while (iterator.getNext().getNext() != null) {
 			if (iterator.getNext().getData().equals(str)) {
 				iterator.setNext(iterator.getNext().getNext());
+				grac = true;
+				this.size--;
 			}
 			iterator = iterator.getNext();
 		}
 
-		if (iterator.getNext().getData().equals(str)) {
+		if (head.getNext().getData().equals(str)) {
+			head.setNext(head.getNext().getNext());
+			this.size--;
+		} else if (iterator.getNext().getData().equals(str)) {
 			iterator.setNext(null);
-		} else {
+			this.size--;
+		} else if (grac == false) {
 			throw new Exception("Error deleting string: This string isn't in the linked list.");
 		}
 	}
