@@ -59,24 +59,23 @@ public class LinkedList {
 
 		Node iterator = head.getNext();
 
-		// Checks to see if the first node agter the head is the thing that needs to be
-		// deleted
+		/*
+		 * Checks to see if the first node is the node that needs to be deleted
+		 * 
+		 */
 		if (iterator.getData().equals(str)) {
 			head.setNext(iterator.getNext());
-			this.size--;
-		} else if (iterator.getNext().getNext() != null) {
-			// Checks to see if anything in the linked list is the node to be deleted
-			while (iterator.getNext().getNext() != null) {
-				if (iterator.getNext().getData().equals(str)) {
-					iterator.setNext(iterator.getNext().getNext());
-					this.size--;
-					break;
-				}
-				iterator = iterator.getNext();
+		}
+
+		while (iterator.getNext().getNext() != null) {
+			if (iterator.getNext().getData().equals(str)) {
+				iterator.setNext(iterator.getNext().getNext());
 			}
-		} else if (iterator.getNext().getNext().getData().equals(str)) {
+			iterator = iterator.getNext();
+		}
+
+		if (iterator.getNext().getData().equals(str)) {
 			iterator.setNext(null);
-			this.size--;
 		} else {
 			throw new Exception("Error deleting string: This string isn't in the linked list.");
 		}

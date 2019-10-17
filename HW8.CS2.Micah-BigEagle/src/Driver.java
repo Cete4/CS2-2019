@@ -6,16 +6,16 @@ import java.util.Scanner;
 public class Driver {
 	public static void main(String[] args) {
 
-		try {
-			// TODO JAVADOC
-			boolean grac = true;
-			Scanner input = new Scanner(System.in);
+		// TODO JAVADOC
+		boolean grac = true;
+		Scanner input = new Scanner(System.in);
 
-			// TODO JAVADOC
-			LinkedList list = new LinkedList();
+		// TODO JAVADOC
+		LinkedList list = new LinkedList();
 
-			// TODO JAVADOC
-			while (grac) {
+		// TODO JAVADOC
+		while (grac) {
+			try {
 				System.out.println("Please select an option.");
 				System.out.println("1: Add 2: Delete 3: Quit");
 				switch (input.nextInt()) {
@@ -39,13 +39,14 @@ public class Driver {
 					break;
 
 				}
-			}
-			input.close();
-		} catch (
 
-		Exception e) {
-			System.out.println(e.getMessage());
+			} catch (
+
+			Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
+		input.close();
 	}
 
 }
