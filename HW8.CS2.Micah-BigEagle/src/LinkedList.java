@@ -30,7 +30,10 @@ public class LinkedList {
 	// TODO JAVADOC
 	public void addItem(String str) throws Exception {
 
-		// TODO Explain this
+		/*
+		 * If head has no next value then this is the first node to be added to the
+		 * linked list and so head should point to it
+		 */
 		if (head.getNext() == null) {
 			Node first = new Node(str, null);
 			head.setNext(first);
@@ -38,7 +41,10 @@ public class LinkedList {
 		} else {
 			// TODO JAVADOC
 			Node iterator = head.getNext();
-			// TODO Explain this
+			/*
+			 * If the node is not the forst item to be added to the list then just add it to
+			 * the end and sort the list so its in order
+			 */
 			while (iterator.getNext() != null) {
 				if (iterator.getData().equals(str)) {
 					throw new Exception("Error adding String: Duplicate String in List");
@@ -46,11 +52,17 @@ public class LinkedList {
 					iterator = iterator.getNext();
 				}
 			}
-			// TODO Explain this
-			Node last = new Node(str, null);
-			iterator.setNext(last);
-			sortList(this);
-			this.size++;
+			/*
+			 * Adding the node to the end of the array list as the last node
+			 */
+			if (iterator.getData().equals(str)) {
+				throw new Exception("Error adding String: Duplicate String in List");
+			} else {
+				Node last = new Node(str, null);
+				iterator.setNext(last);
+				sortList(this);
+				this.size++;
+			}
 		}
 	}
 
@@ -59,23 +71,27 @@ public class LinkedList {
 
 		Node iterator = head.getNext();
 		boolean grac = false;
-		while (iterator.getNext().getNext() != null) {
-			if (iterator.getNext().getData().equals(str)) {
-				iterator.setNext(iterator.getNext().getNext());
-				grac = true;
-				this.size--;
+		if (head.getNext() == null) {
+			// Do Nothing
+		} else {
+			while (iterator.getNext().getNext() != null) {
+				if (iterator.getNext().getData().equals(str)) {
+					iterator.setNext(iterator.getNext().getNext());
+					grac = true;
+					this.size--;
+				}
+				iterator = iterator.getNext();
 			}
-			iterator = iterator.getNext();
-		}
 
-		if (head.getNext().getData().equals(str)) {
-			head.setNext(head.getNext().getNext());
-			this.size--;
-		} else if (iterator.getNext().getData().equals(str)) {
-			iterator.setNext(null);
-			this.size--;
-		} else if (grac == false) {
-			throw new Exception("Error deleting string: This string isn't in the linked list.");
+			if (head.getNext().getData().equals(str)) {
+				head.setNext(head.getNext().getNext());
+				this.size--;
+			} else if (iterator.getNext().getData().equals(str)) {
+				iterator.setNext(null);
+				this.size--;
+			} else if (grac == false) {
+				throw new Exception("Error deleting string: This string isn't in the linked list.");
+			}
 		}
 	}
 

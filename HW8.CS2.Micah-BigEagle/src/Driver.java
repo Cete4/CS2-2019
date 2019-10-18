@@ -6,14 +6,20 @@ import java.util.Scanner;
 public class Driver {
 	public static void main(String[] args) {
 
-		// TODO JAVADOC
+		/*
+		 * grac a boolean that tracks whether or not the loop should continue
+		 */
 		boolean grac = true;
 		Scanner input = new Scanner(System.in);
 
-		// TODO JAVADOC
+		/*
+		 * Create a list to add items to in the loop
+		 */
 		LinkedList list = new LinkedList();
 
-		// TODO JAVADOC
+		/*
+		 * Loop that will continue until the user asks it to stop
+		 */
 		while (grac) {
 			try {
 				System.out.println("Please select an option.");
@@ -21,17 +27,19 @@ public class Driver {
 				switch (input.nextInt()) {
 
 				case 1:
+					input.nextLine();
 					System.out.println("Please enter a string");
-					list.addItem(input.next());
+					list.addItem(input.nextLine());
 					System.out.println("List size: " + list.getSize());
-					System.out.println(list);
+					System.out.println(list + "\n");
 					break;
 
 				case 2:
+					input.nextLine();
 					System.out.println("Please enter a string");
-					list.deleteItem(input.next());
+					list.deleteItem(input.nextLine());
 					System.out.println("List size: " + list.getSize());
-					System.out.println(list);
+					System.out.println(list + "\n");
 					break;
 
 				case 3:
