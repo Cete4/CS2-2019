@@ -10,12 +10,12 @@ public class Symbol {
 	private String symbol;
 
 	// TODO JAVADOC
-	private int getLineNumber() {
+	public int getLineNumber() {
 		return lineNumber;
 	}
 
 	// TODO JAVADOC
-	private String getSymbol() {
+	public String getSymbol() {
 		return symbol;
 	}
 
@@ -31,14 +31,13 @@ public class Symbol {
 
 	@Override
 	public String toString() {
-		return "Symbol [lineNumber=" + lineNumber + ", symbol=" + symbol + "]";
+		return this.symbol + " on line " + this.lineNumber;
 	}
 
 	// TODO JAVADOC
 	public Symbol(int lineNumber, String symbol) {
-		super();
-		this.lineNumber = lineNumber;
-		this.symbol = symbol;
+		setSymbol(symbol);
+		setLineNumber(lineNumber);
 	}
 
 }
