@@ -21,9 +21,18 @@ public class StackQueueExercise {
 	 * @param inputQueue The queue to be stuttered
 	 */
 	public static void stutter(Queue<Integer> inputQueue) {
-		for (int i = 0; i < 3; i++) {
-			
+		Queue<Integer> outputQueue = new LinkedList<Integer>();
+		while (inputQueue.isEmpty() != false) {
+			outputQueue.add(inputQueue.peek());
+			outputQueue.add(inputQueue.peek());
+			outputQueue.add(inputQueue.peek());
+			inputQueue.remove();
 		}
+		System.out.println(outputQueue);
+		while (outputQueue.isEmpty() != false) {
+			inputQueue.add(outputQueue.peek());
+		}
+
 	}
 
 	/**
