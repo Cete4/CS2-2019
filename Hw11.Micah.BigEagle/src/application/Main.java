@@ -13,9 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
-
-public class Main extends Application implements EventHandler<ActionEvent>
-{
+public class Main extends Application implements EventHandler<ActionEvent> {
 
 	/** The left text area */
 	private TextArea leftTA;
@@ -35,7 +33,6 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	/** The main stage */
 	private Stage mainStage;
 
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -43,56 +40,56 @@ public class Main extends Application implements EventHandler<ActionEvent>
 			mainStage = primaryStage;
 			symbolParser = new SymbolParser();
 			GridPane root = new GridPane();
-			Scene scene = new Scene(root,600,600);
-			primaryStage.setTitle("HW 10");
-			
+			Scene scene = new Scene(root, 600, 600);
+			primaryStage.setTitle("HW 11");
 
-			root.setPrefSize(500,  500);
-			
+			root.setPrefSize(500, 500);
+
 			// Adding the left text area
 			leftTA = new TextArea();
-			leftTA.setPrefSize(400,  600);
+			leftTA.setPrefSize(400, 600);
 			ScrollPane leftSP = new ScrollPane(leftTA);
-			root.add(leftSP,  0,  0);
-			
+			root.add(leftSP, 0, 0);
+
 			// Adding the left text area
 			rightTA = new TextArea();
-			rightTA.setPrefSize(400,  600);
+			rightTA.setPrefSize(400, 600);
 			ScrollPane rightSP = new ScrollPane(rightTA);
-			root.add(rightSP,  1,  0);			
+			root.add(rightSP, 1, 0);
 			// Adding menu options
 			openB = new Button("Open");
 			openB.setOnAction(this);
-			root.add(openB,  0, 1);
+			root.add(openB, 0, 1);
 			resetB = new Button("Reset");
 			resetB.setOnAction(this);
-			root.add(resetB,  1,  1);
+			root.add(resetB, 1, 1);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == openB)
-		{
+		if (event.getSource() == openB) {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open file");
 			File selectedFile = fileChooser.showOpenDialog(mainStage);
 			if (selectedFile != null) {
 				symbolParser.parseFile(selectedFile);
 				leftTA.setText(symbolParser.getOriginalString());
+
+				// TODO Call the symbol parser to parse the file and print the symbols
 			}
-		}
-		else
-		{
-			//TODO Reset the symbol parser object
-			//TODO Reset the two text areas
+		} else {
+			// TODO Reset the symbol parser object
+			// TODO Reset the two text areas
 		}
 
 	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
