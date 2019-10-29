@@ -81,11 +81,15 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 				symbolParser.parseFile(selectedFile);
 				leftTA.setText(symbolParser.getOriginalString());
 
-				// TODO Call the symbol parser to parse the file and print the symbols
+				// TODO Explain this ish
+				Symbol useless = new Symbol(0, "");
+				useless.symbolDetector(selectedFile);
+				rightTA.setText(useless.getOriginalText());
+
 			}
 		} else {
-			// TODO Reset the symbol parser object
-			// TODO Reset the two text areas
+			leftTA.clear();
+			rightTA.clear();
 		}
 
 	}
