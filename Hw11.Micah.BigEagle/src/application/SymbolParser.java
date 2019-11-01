@@ -41,10 +41,7 @@ public class SymbolParser {
 				lineNumber++;
 			}
 		} catch (FileNotFoundException e) {
-<<<<<<< HEAD
-=======
 			// TODO Auto-generated catch block
->>>>>>> f2c6e06d8c37656f147ec8e83a3a5fdd5e6c8107
 			e.printStackTrace();
 		}
 	}
@@ -69,8 +66,6 @@ public class SymbolParser {
 
 	}
 
-<<<<<<< HEAD
-=======
 	/*
 	 * Method that will find symbols in a code and pair them together or if they are
 	 * not complete pairs will find the error and finish reading the block of text.
@@ -175,5 +170,4 @@ public class SymbolParser {
 		return lineNumber++;
 
 	}
->>>>>>> f2c6e06d8c37656f147ec8e83a3a5fdd5e6c8107
 }
