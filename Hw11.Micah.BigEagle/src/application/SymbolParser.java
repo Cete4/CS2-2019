@@ -65,11 +65,13 @@ public class SymbolParser {
 
 	}
 
-	// TODO JAVADOC
+	/*
+	 * Method that will find symbols in a code and pair them together or if they are
+	 * not complete pairs will find the error and finish reading the block of text.
+	 * Retrieval of the text can be done by calling getOriginalText() and will
+	 * return a string
+	 */
 	public void codeParse(File inputFile) {
-
-		// TODO JAVADOC or create a method
-		boolean inBlockComment = false;
 
 		// TODO JAVADOC or create a method
 		boolean inString = false;
@@ -85,6 +87,7 @@ public class SymbolParser {
 				String line = input.nextLine();
 				// Iterate a character at a time
 				for (int i = 0; i < line.length(); i++) {
+					// TODO Create symbol objects here
 					lineNumber++;
 				}
 			}
@@ -96,7 +99,7 @@ public class SymbolParser {
 	}
 
 	// TODO JAVADOC
-	public int commentParse(File inputFile, int lineNumber, int charNumber) {
+	public int commentParse(File inputFile, int lineNumber, int charNumber, Symbol symbol) {
 		Scanner input;
 		try {
 			// Read in a whole line
@@ -107,6 +110,9 @@ public class SymbolParser {
 			for (int i = 1; i < lineNumber; i++) {
 				line = input.nextLine();
 			}
+
+			// Add the // that starts an inline comment
+			this.originalText += "// ";
 
 			// Iterate through the line until you get to where the comment begins
 			for (int i = charNumber; i < line.length(); i++) {
@@ -122,7 +128,7 @@ public class SymbolParser {
 	}
 
 	// TODO JAVADOC
-	public int blockCommentParse(File inputFile, int lineNumber, int charNumber) {
+	public int blockCommentParse(File inputFile, int lineNumber, int charNumber, Symbol sym, Symbol bol) {
 		Scanner input;
 		try {
 			// Read in a whole line
@@ -138,7 +144,7 @@ public class SymbolParser {
 			while (input.hasNextLine() && endcomment == false) {
 				// Iterate through the line until you get to where the comment begins
 				for (int i = charNumber; i < line.length(); i++) {
-					if (line.charAt(i) == '*' && line.charAt(i + 1) == '/') { // if the block comment ends with */
+					if (line.charAt(i) == '*' && line.charAt(i + 1) == '/') { /* if the block comment ends with */
 						// Breaks out of the while loop
 						endcomment = true;
 
