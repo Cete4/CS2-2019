@@ -99,7 +99,7 @@ public class SymbolParser {
 	}
 
 	// TODO JAVADOC
-	public int commentParse(File inputFile, int lineNumber, int charNumber, Symbol symbol) {
+	public int commentParse(File inputFile, int lineNumber, int charNumber) {
 		Scanner input;
 		try {
 			// Read in a whole line
