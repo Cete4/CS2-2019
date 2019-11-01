@@ -134,10 +134,22 @@ public class SymbolParser {
 				line = input.nextLine();
 			}
 
-			while (input.hasNextLine()) {
+			boolean endcomment = false;
+			while (input.hasNextLine() && endcomment == false) {
 				// Iterate through the line until you get to where the comment begins
 				for (int i = charNumber; i < line.length(); i++) {
-					this.originalText += line.charAt(i);
+					if (line.charAt(i) == '*' && line.charAt(i + 1) == '/') { // if the block comment ends with */
+						// Breaks out of the while loop
+						endcomment = true;
+
+						// Add the two chars to the end of the master block
+						this.originalText += line.charAt(i);
+						this.originalText += line.charAt(i + 1);
+						// exit the loop beacause the end of the comment has been reached
+						break;
+					} else {
+						this.originalText += line.charAt(i);
+					}
 				}
 				line = input.nextLine();
 				lineNumber++;
@@ -147,8 +159,8 @@ public class SymbolParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// Returns the lineNumber where the end of the comment was
 		return lineNumber++;
 
 	}
-
 }
