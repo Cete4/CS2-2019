@@ -12,10 +12,14 @@ public class SymbolParser {
 	/** This string gets built with all matching pairs */
 	private String symbolMatchingText;
 
+	/** A reference string of the file */
+	private String refString;
+
 	/** Constructor */
 	public SymbolParser() {
 		this.originalText = "";
 		this.symbolMatchingText = "";
+		this.refString = "";
 	}
 
 	/**
@@ -31,12 +35,16 @@ public class SymbolParser {
 			// Reading in one line at a time
 			int lineNumber = 1;
 			while (input.hasNextLine()) {
+
+				// TODO Possibly uncomment it and redo this refString += lineNumber + ": ";
 				// Read in a whole line
 				String line = input.nextLine();
 				// Iterate a character at a time
 				for (int i = 0; i < line.length(); i++) {
 					originalText = originalText + "\n" + lineNumber + ": " + line.charAt(i);
+					refString += line.charAt(i);
 				}
+				refString += "\n";
 				lineNumber++;
 			}
 		} catch (FileNotFoundException e) {
@@ -71,44 +79,35 @@ public class SymbolParser {
 	 * Retrieval of the text can be done by calling getOriginalText() and will
 	 * return a string
 	 */
-	public void codeParse(File inputFile) {
+	public void codeParse() {
 
-		Scanner input;
-		try {
-			input = new Scanner(inputFile);
+		int lineNumber = 1;
+		for (int k = 0; k < refString.length(); k++) {
 
-			// TODO Create an inString method and case
-			// Reading in one line at a time
-			int lineNumber = 1;
-			while (input.hasNextLine()) {
-				// Read in a whole line
-				String line = input.nextLine();
-				// Iterate a character at a time
-				for (int i = 0; i < line.length(); i++) {
-					if (line.charAt(i) == '"') {
-						stringParse(inputFile, lineNumber, i);
+			// Iterate a character at a time
+			for (int i = 0; i < this.refString.length(); i++) {
+				if (refString.charAt(i) == '"') {
+					stringParse(lineNumber, i);
+				}
+				if (refString.charAt(i) == '/') {
+					if (refString.charAt(i + 1) == '*') {
+						blockCommentParse(lineNumber, i);
 					}
-					if (line.charAt(i) == '/') {
+				}
+				if (refString.charAt(i) == '/' && refString.charAt(i) == '/') {
+					lineCommentParse(lineNumber, i);
+				}
 
-					}
-					// TODO Create symbol objects here
+				if (refString.charAt(i) == '\n') {
 					lineNumber++;
 				}
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
 
 	// TODO JAVADOC
-	private int commentParse(File inputFile, int lineNumber, int charNumber) {
-		Scanner input;
-		try {
-			// Read in a whole line
-			input = new Scanner(inputFile);
-			String line = input.nextLine();
+	private int lineCommentParse(int lineNumber, int charNumber) {
 
 			// Iterate through the file until you get the line where the comment is
 			for (int i = 1; i < lineNumber; i++) {
@@ -123,16 +122,12 @@ public class SymbolParser {
 				this.originalText += line.charAt(i);
 			}
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return lineNumber++;
 
 	}
 
 	// TODO JAVADOC
-	private int blockCommentParse(File inputFile, int lineNumber, int charNumber, Symbol sym, Symbol bol) {
+	private int blockCommentParse(int lineNumber, int charNumber) {
 		Scanner input;
 		try {
 			// Read in a whole line
@@ -175,7 +170,7 @@ public class SymbolParser {
 	}
 
 	// TODO finish this and create jdocs
-	private void stringParse(File inputFile, int lineNumber, int i) {
+	private void stringParse(int lineNumber, int i) {
 		// TODO Auto-generated method stub
 
 	}
