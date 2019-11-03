@@ -14,8 +14,8 @@ public class SymbolParser {
 
 	/** Constructor */
 	public SymbolParser() {
-		originalText = "";
-		symbolMatchingText = "";
+		this.originalText = "";
+		this.symbolMatchingText = "";
 	}
 
 	/**
@@ -73,13 +73,11 @@ public class SymbolParser {
 	 */
 	public void codeParse(File inputFile) {
 
-		// TODO JAVADOC or create a method
-		boolean inString = false;
-
 		Scanner input;
 		try {
 			input = new Scanner(inputFile);
 
+			// TODO Create an inString method and case
 			// Reading in one line at a time
 			int lineNumber = 1;
 			while (input.hasNextLine()) {
@@ -87,6 +85,12 @@ public class SymbolParser {
 				String line = input.nextLine();
 				// Iterate a character at a time
 				for (int i = 0; i < line.length(); i++) {
+					if (line.charAt(i) == '"') {
+						stringParse(inputFile, lineNumber, i);
+					}
+					if (line.charAt(i) == '/') {
+
+					}
 					// TODO Create symbol objects here
 					lineNumber++;
 				}
@@ -99,7 +103,7 @@ public class SymbolParser {
 	}
 
 	// TODO JAVADOC
-	public int commentParse(File inputFile, int lineNumber, int charNumber) {
+	private int commentParse(File inputFile, int lineNumber, int charNumber) {
 		Scanner input;
 		try {
 			// Read in a whole line
@@ -128,7 +132,7 @@ public class SymbolParser {
 	}
 
 	// TODO JAVADOC
-	public int blockCommentParse(File inputFile, int lineNumber, int charNumber, Symbol sym, Symbol bol) {
+	private int blockCommentParse(File inputFile, int lineNumber, int charNumber, Symbol sym, Symbol bol) {
 		Scanner input;
 		try {
 			// Read in a whole line
@@ -167,6 +171,12 @@ public class SymbolParser {
 		}
 		// Returns the lineNumber where the end of the comment was
 		return lineNumber++;
+
+	}
+
+	// TODO finish this and create jdocs
+	private void stringParse(File inputFile, int lineNumber, int i) {
+		// TODO Auto-generated method stub
 
 	}
 }
